@@ -83,13 +83,13 @@ This breaks down the path in subpaths, breaking wherever a moveto (<code>M</code
 </pre>
 <h3>getAbsolutePath()</h3>
 <pre>
-var abs_paths = info2.getAbsolutePath();
+var abs_path = info2.getAbsolutePath();
 </pre>
 Wherever the lowercase form of a command is used, the coordinates that follow the command are <i>relative</i> - their location is specified relative to location of the pen, and not specified absolutely i.e. relative <i>to the point of origin</i> of the svg element (the top left corner). 
 This function converts the path to the absolute form and returns a string. (Note: my example path is already absolute.)
 <h3>getRelativePath()</h3>
 <pre>
-var rel_paths = info2.getRelativePath();
+var rel_path = info2.getRelativePath();
 </pre>
 This does the opposite of getAbsolutePath() - all absolute commands are modified so as to be specified in relation to the location of the pen. 
 <pre>
