@@ -67,7 +67,7 @@ This will return the object that is described by the above JSON string.
 </pre>
 <h3>getCommandsArray()</h3>
 <pre>
-var path_commands = info2.getCommandsArray();
+var path_commands_array = info2.getCommandsArray();
 </pre>
 This returns an array of command <i>strings</i>, rather than an object of command <i>objects</i>:
 <pre>
@@ -83,13 +83,13 @@ This breaks down the path in subpaths, breaking wherever a moveto (<code>M</code
 </pre>
 <h3>getAbsolutePath()</h3>
 <pre>
-var subpaths = info2.getAbsolutePath();
+var abs_paths = info2.getAbsolutePath();
 </pre>
 Wherever the lowercase form of a command is used, the coordinates that follow the command are <i>relative</i> - their location is specified relative to location of the pen, and not specified absolutely i.e. relative <i>to the point of origin</i> of the svg element (the top left corner). 
 This function converts the path to the absolute form and returns a string. (Note: my example path is already absolute.)
 <h3>getRelativePath()</h3>
 <pre>
-var subpaths = info2.getAbsolutePath();
+var rel_paths = info2.getRelativePath();
 </pre>
 This does the opposite of getAbsolutePath() - all absolute commands are modified so as to be specified in relation to the location of the pen. 
 <pre>
@@ -97,7 +97,7 @@ This does the opposite of getAbsolutePath() - all absolute commands are modified
 </pre>
 <h3>getGlobalCubicBezier()</h3>
 <pre>
-var subpaths = info2.getGlobalCubicBezier();
+var cubic_bezier_path = info2.getGlobalCubicBezier();
 </pre>
 This function converts each command to a cubic Bézier and returns a string. 
 <pre>
@@ -107,7 +107,7 @@ This function converts each command to a cubic Bézier and returns a string.
 <h4>Accuracy</h4>
 There is approximation involved, as is the nature of dealing with Bézier curves, and of course Javascript does famously imprecise maths. However, the result is quite good: 
 <img src='SVGPathInfo-asterisk.png' />
-This svg image is the result of generating path strings using SVGPathInfo's various functions, and assigning the resultant strings to the "d" attribute of path elements. I made the stroke-width of the paths decrease progressively so that all the paths can be seen at once. Here is the JS:
+This image is the result of generating path strings using SVGPathInfo's various functions, and assigning the resultant strings to the "d" attribute of path elements. I made the stroke-width of the paths decrease progressively so that all the paths can be seen at once. Here is the JS:
 <pre> 
 var info = new SVGPathInfo(path1); 
 document.getElementById('path2').setAttribute("d", info.getRelativePath()); 
