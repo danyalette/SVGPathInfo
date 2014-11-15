@@ -49,9 +49,9 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 	
 	var cleanD = function(str){
 
-		var string = str.replace(/ *([a-zA-Z]) */g, "$1");
+		var string = str.replace(/,/g, " "); 
+		string = string.replace(/ *([a-zA-Z]) */g, "$1");
 		string = string.replace(/(.*) +$/g, "$1");
-		string = string.replace(/,/g, " "); 
 		string = string.replace(/([0-9])+-/g, "$1 -"); 
 		string = string.replace(/ *(a-zA-Z) */g, "$1"); 
 		string = string.replace(/ *( ) */g, "$1"); 
