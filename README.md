@@ -4,7 +4,7 @@ SVGPathInfo
 lightweight Javascript library for parsing and modifying an SVG path
 
 <h2>How To</h2>
-The available methods are <code>getJSON()</code>, <code>getCommands()</code>, <code>getCommandsArray()</code>, <code>getSubPaths()</code>, <code>getRelativePath()</code>, <code>getAbsolutePath()</code> and <code>getGlobalCubicBezier()</code>. 
+The available methods are <code>getJSON()</code>, <code>getCommands()</code>, <code>getCommandsArray()</code>, <code>getSubPaths(deep)</code>, <code>getRelativePath()</code>, <code>getAbsolutePath()</code> and <code>getGlobalCubicBezier()</code>. 
 
 Once you've included the script in your page, here's how you start using them: 
 <h3>Begin</h3>
@@ -73,13 +73,19 @@ This returns an array of command <i>strings</i>, rather than an object of comman
 <pre>
 ["M0 0", "L0 50", "L50 50", "M0 200", "L200 0"] 
 </pre>
-<h3>getSubPaths()</h3>
+<h3>getSubPaths(deep)</h3>
 <pre>
-var subpaths = info2.getSubPaths();
+var subpaths = info2.getSubPaths(true);
+//OR
+var subpaths = info2.getSubPaths(); //default: false
 </pre>
-This breaks down the path in subpaths, breaking wherever a moveto (<code>M</code/<code>m</code>) command occurs. It returns of array of subpath strings:
+This breaks down the path in subpaths, breaking wherever a moveto (<code>M</code/<code>m</code>) command occurs. The default value of the argument <code>deep</code> is <code>false</code>. If <code>deep</code> is <code>false</code>, it returns of array of subpath strings:
 <pre>
 ["M0 0L0 50L50 50", "M0 200L200 0"] 
+</pre>
+If <code>deep</code> is <code>true</code>, it returns of array of subpath arrays:
+<pre>
+[["M0 0", "L0 50", "L50 50"], ["M0 200", "L200 0"]] 
 </pre>
 <h3>getAbsolutePath()</h3>
 <pre>
