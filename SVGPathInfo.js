@@ -102,13 +102,24 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 		return JSON.stringify(new_commands_object); 	
 	}; 
 	
-	var getSubPaths = function(){
+	var getSubPaths = function(deep){
 		
 		var cleand = cleanD(d); 
 		var regex_pattern = /[Mm][^Mm]*/g; 
 		var matches = cleand.match(regex_pattern);
 		
-		return matches; 		
+		
+		if (deep === true){
+			var deep_parsed_array = [];
+			matches.forEach(function(string){
+				var info = new SVGPathInfo(string);
+				deep_parsed_array.push(info.getCommandsArray()); 
+			}); 
+			return deep_parsed_array; 
+		}
+		else {
+		return matches; 
+		}		
 	};
 
 	
