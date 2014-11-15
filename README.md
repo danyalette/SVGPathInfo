@@ -79,11 +79,11 @@ var subpaths = info2.getSubPaths(true);
 //OR
 var subpaths = info2.getSubPaths(); //default: false
 </pre>
-This breaks down the path in subpaths, breaking wherever a moveto (<code>M</code/<code>m</code>) command occurs. The default value of the argument <code>deep</code> is <code>false</code>. If <code>deep</code> is <code>false</code>, it returns of array of subpath strings:
+This breaks down the path into subpaths, breaking wherever a moveto (<code>M</code>/<code>m</code>) command occurs. The default value of the argument <code>deep</code> is <code>false</code>. If <code>deep</code> is <code>false</code>, it returns an array of subpath strings:
 <pre>
 ["M0 0L0 50L50 50", "M0 200L200 0"] 
 </pre>
-If <code>deep</code> is <code>true</code>, it returns of array of subpath arrays:
+If <code>deep</code> is <code>true</code>, it returns an array of subpath arrays:
 <pre>
 [["M0 0", "L0 50", "L50 50"], ["M0 200", "L200 0"]] 
 </pre>
@@ -103,7 +103,7 @@ This does the opposite of getAbsolutePath() - all absolute commands are modified
 </pre>
 <h3>getGlobalCubicBezier()</h3>
 <pre>
-var cubic_bezier_path = info2.getGlobalCubicBezier();
+var gcb_path = info2.getGlobalCubicBezier();
 </pre>
 This function converts each command to a cubic Bézier and returns a string. 
 <pre>
