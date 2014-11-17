@@ -1,3 +1,10 @@
+/*
+
+version:1.0.0
+last modified: Nov. 17 2014
+by danya lette 
+
+*/
 
 (function(window){
 var SVGPathInfo = function(path_elem_OR_path_string){
@@ -76,7 +83,7 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 		var i = 0
 		commands_array.forEach(function(string){
 			var this_command = new Command(string); 
-			all_commands[i] = this_command; //i used `i` because all_commads is an object so it will require an inde
+			all_commands[i] = this_command; 
 			i++; 		
 		});
 		return all_commands; 
@@ -137,7 +144,6 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 			
 			var relative = /[a-z]/.test(type)? true : false; 
 			if (relative === false){
-				//do magic
 				relative_string += type.toLowerCase(); 
 				for (key in this_command){
 					if ((key == "x1")||(key == "x2")||(key == "x")){
@@ -332,4 +338,3 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 })(window); 
 
 
- 
