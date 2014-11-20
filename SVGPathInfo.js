@@ -58,6 +58,8 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 		string = string.replace(/([0-9])+-/g, "$1 -"); 
 		string = string.replace(/ *(a-zA-Z) */g, "$1"); 
 		string = string.replace(/ *( ) */g, "$1"); 
+		string = string.replace(/\s{2,}/g, ' ');
+		string = string.replace(/ ($)/g, '$1');
 		return string; 
 
 	};
