@@ -1,10 +1,3 @@
-/*
-
-version:1.0.0
-last modified: Nov. 17 2014
-by danya lette 
-
-*/
 
 (function(window){
 var SVGPathInfo = function(path_elem_OR_path_string){
@@ -20,9 +13,12 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 
 		var coords = string.slice(1).split(" ");	
 		var params = commandParameters[type.toLowerCase()]; 
+		if (coords.length != params.length) {
+			console.log("Error: invalid path: " + string);
+			throw("Error: invalid path.");
+			} 
 
 		for(i=0;i<params.length;i++){
-
 			var this_param = params[i]; 
 			this[this_param] = coords[i];
 		}
@@ -158,6 +154,10 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 						relative_value += this_command[key]*1; 
 						relative_string += relative_value + " ";
 					}
+					else if ((key == "rx")||(key == "ry")||(key == "x_rot")||(key == "arc_flag")||(key == "sweep_flag")){
+						relative_value = this_command[key]; 
+						relative_string += relative_value + " ";
+					}
 					
 				}
 				if (typeof this_command.x != "undefined") pen.x = this_command.x*1;
@@ -203,6 +203,10 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 						absolute_value += this_command[key]*1; 
 						absolute_string += absolute_value + " ";
 					}
+					else if ((key == "rx")||(key == "ry")||(key == "x_rot")||(key == "arc_flag")||(key == "sweep_flag")){
+						absolute_value = this_command[key]; 
+						absolute_string += absolute_value + " ";
+					}
 					
 				}
 				if (typeof this_command.x != "undefined") pen.x += this_command.x*1;
@@ -238,8 +242,7 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 			var type = this_command.type; 
 			
 			if (type == "A"){
-				console.log("Error: conversion of arc commands (\"a\" or \"A\") is not currently supported.")
-				return "error"; 
+				return "Error: conversion of arc commands (\"a\" or \"A\") is not currently supported."; 
 			}
 			
 			
@@ -249,7 +252,7 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 				pen.x = this_command.x;
 				pen.y = this_command.y; 
 				
-				cubic_string += "M" + this_command.x + " " + this_command.y; //m's are not converted 
+				cubic_string += "M" + this_command.x + " " + this_command.y; //M commands are not converted 
 			}
 			else if (type == "C"){
 				pen.x = this_command.x;

@@ -1,7 +1,8 @@
 SVGPathInfo
 ===========
 
-lightweight Javascript library for parsing and modifying an SVG path
+Lightweight Javascript library for parsing and modifying an SVG path.
+Use it online <a href='http://danyalette.com/SVGPathInfo'>here</a>. 
 
 <h2>How To</h2>
 The available methods are <code>getJSON()</code>, <code>getCommands()</code>, <code>getCommandsArray()</code>, <code>getSubPaths(deep)</code>, <code>getRelativePath()</code>, <code>getAbsolutePath()</code> and <code>getGlobalCubicBezier()</code>. 
