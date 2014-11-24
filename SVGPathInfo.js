@@ -13,8 +13,7 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 
 		var coords = string.slice(1).split(" ");	
 		var params = commandParameters[type.toLowerCase()]; 
-		if (coords.length != params.length) {
-			console.log("Error: invalid path: " + string);
+		if ((params.length > 0)&&(coords.length != params.length)) {
 			throw("Error: invalid path.");
 			} 
 
@@ -53,12 +52,13 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 	var cleanD = function(str){
 
 		var string = str.replace(/,/g, " "); 
+		string = string.replace(/$/g, " ");
 		string = string.replace(/ *([a-zA-Z]) */g, "$1");
 		string = string.replace(/(.*) +$/g, "$1");
 		string = string.replace(/([0-9])+-/g, "$1 -"); 
 		string = string.replace(/ *(a-zA-Z) */g, "$1"); 
 		string = string.replace(/ *( ) */g, "$1"); 
-		string = string.replace(/\s{2,}/g, ' ');
+		string = string.replace(/\s{1,}/g, ' ');
 		string = string.replace(/ ($)/g, '$1');
 		return string; 
 
@@ -73,9 +73,9 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 		var command_strings_array = ungroupCommands(matches); 
 		return command_strings_array; 	
 	};
+
 	
-	var parseD = function(){ //creates command objects for each command string 
-	
+	var getCommands = function(){
 		var commands_array = getCommandsArray(d); 
 		var all_commands = {}; 
 		var i = 0
@@ -84,13 +84,7 @@ var SVGPathInfo = function(path_elem_OR_path_string){
 			all_commands[i] = this_command; 
 			i++; 		
 		});
-		return all_commands; 
-	};
-	
-
-	
-	var getCommands = function(){
-		return parseD(d); 
+		return all_commands;
 	}; 
 	
 	var getJSON = function(){
